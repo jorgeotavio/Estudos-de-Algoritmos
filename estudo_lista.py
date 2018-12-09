@@ -122,3 +122,55 @@ class Lista():
 
                 atual = atual.proximo
                 i+=1
+
+    def __delitem__(self, item):
+        if isinstance(item, slice):
+
+            start, stop, step = self.__inicializar_valores_fatiamento(item)
+
+            i = start
+            while 0 <= i < stop:
+                if i >= len(self):
+                    break
+
+                del self[i]
+                i += step
+                i -= 1
+                stop -= 1
+
+        else:
+            if item < 0:
+                item+=len(self)
+
+            if item < 0 or item >= len(self):
+                raise IndexError(self.__erro)
+
+            i = 0
+            antecessor = None
+            atual = self.__primeiro
+            while i <= item:
+                if atual is None:
+                    break
+
+                if i == item:
+                    if antecessor is None:
+                        self.__primeiro = atual.proximo
+
+                    elif atual.proximo is None:
+                        antecessor.proximo = None
+                        self.__ultimo = antecessor
+
+                    else:
+                        antecessor.proximo = atual.proximo
+                        atual.proximo.anterior = antecessor
+
+                    self.__tamanho -= 1
+
+                    return atual.conteudo
+
+                antecessor = atual
+                atual = atual.proximo
+
+                i += 1
+
+            self.__iterando = None
