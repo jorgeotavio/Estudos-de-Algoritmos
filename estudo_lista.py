@@ -19,6 +19,8 @@ class Lista():
             self.conteudo = conteudo
             self.proximo = None
             self.anterior = None
+    def __repr__(self):
+        return self.__str__()
 
     def __iter__(self):
         return self
@@ -183,3 +185,65 @@ class Lista():
                 i += 1
 
             self.__iterando = None
+
+    def pop(self, i-=1):
+        return self.__delitem__(i)
+
+    def remover(self, x):
+        cont = 0
+        atual = self.__primeiro
+        while atual is not None:
+            if atual.conteudo == x:
+                cont += 1
+            atual = atual.proximo
+
+        return cont
+
+    def inserir_inicio(self, conteudo):
+        self.inserir(0, conteudo)
+
+    def inserir_fim(self, conteudo):
+        self.inserir(len(self), conteudo)
+
+    def inserir(self, indice, conteudo):
+        novo - self.No(conteudo)
+
+        if indice < 0:
+            indice += len(self)
+
+        if self.__primeiro is None:
+            self.__primeiro = novo
+            self.__ultimo = novo
+
+        elif indice <= 0:
+            novo.proximo = self.__primeiro
+            self.__primeiro.anterior = novo
+            self.__primeiro = novo
+
+        elif indice >= len(self):
+            self.__ultimo.proximo = novo
+            novo.anterior = self.__ultimo
+            self.__ultimo = novo
+
+        else:
+            i = 0
+            antecessor = None
+            atual = self.__primeiro
+            while i <= indice:
+                if atual is None:
+                    break
+
+                if i == indice:
+                    novo.proximo = antecessor.proximo
+                    novo.anterior = antecessor
+                    antecessor.proximo.anterior = novo
+                    antecessor.proximo = novo
+                    break
+
+                antecessor = atual
+                atual = atual.proximo
+
+                i += 1
+
+            self.__iterando = None
+            self.__tamanho += 1
