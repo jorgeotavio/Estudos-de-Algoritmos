@@ -37,6 +37,15 @@ class Lista():
     def __len__(self):
         return self.__tamanho
 
+    def __str__(self):
+        retorno = "["
+        for i, e in enumerate(self):
+            retorno += e.__repr__()
+            if i < len(self)-1:
+                retorno += ","
+        retorno += "]"
+        return retorno
+
     def __inicializar_valores_fatiamento(self, item):
 
         if item.start is None:
