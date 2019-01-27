@@ -110,34 +110,3 @@ class TabelaHash:
 
     def __função_hash(self, chave):
         return hash(chave) % self.__tamanho
-
-
-notas = TabelaHash(11)
-pessoa = TabelaHash(11)
-
-notas['1va'] = 7.9
-notas['2va'] = 7.2
-notas['3va'] = 8.6
-
-pessoa['nome'] = 'igu'
-pessoa['idade'] = 31
-pessoa['profissão'] = 'Professor'
-pessoa['notas'] = notas
-
-pessoa['nome'] = 'nels'
-pessoa['idade'] = 18
-pessoa['profissão'] = 'alunoi'
-pessoa['notas'] = notas
-
-print(pessoa['profissão'])
-print(len(pessoa))
-print('notas' in pessoa)
-print(pessoa)
-print()
-for e in pessoa.keys():
-    print(e)
-
-# aluno = {'nome': 'Fulano da Silva', 'idade': 30}
-#
-# for e in aluno.values():
-#     print(e)
